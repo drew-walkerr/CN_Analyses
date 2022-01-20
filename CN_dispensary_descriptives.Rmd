@@ -1,0 +1,24 @@
+---
+title: "CN_dispensary_descriptives"
+author: "Drew Walker"
+date: "1/20/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(table1)
+```
+
+```{r load-data}
+dispensary_data_raw <- read_csv("Dispensary Data Analyze Summer 2021.csv")
+
+index <- 1:ncol(dispensary_data_raw)
+dispensary_data_raw[ , index] <- lapply(dispensary_data_raw[ , index], as.factor)
+str(dispensary_data_raw)
+
+table1(~Store_location + Interior_visible+ MMCard_2_enter+ MMCard_2_purchase+MinAgeSign+ Visible_product_ads+Visible_price_promotion+No_smoking_sign+Get_card_onsite+ Dispensary_look+ Exterior_condition+ Nearby_condition+ Smoking_nearby, data = dispensary_data_raw)
+```
+
+
